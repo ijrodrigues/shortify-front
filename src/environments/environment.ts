@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  redirectUrl: 'http://localhost:4200/',
+  shortifyManagerUrl: 'http://localhost:8080/shortify-manager/shortify',
+  shortifySearchUrl: 'http://localhost:8081/shortify-search'
 };
 
 /*
