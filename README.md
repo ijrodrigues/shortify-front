@@ -1,3 +1,8 @@
+# Architecture Overview
+
+To see a general overview of the architecture, with all related applications, go to:
+https://github.com/ijrodrigues/shortify-manager
+
 # ShortifyFront
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
