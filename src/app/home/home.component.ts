@@ -3,6 +3,7 @@ import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, 
 import {ShortifyService} from "./shortify.service";
 import {Shortify} from "./Shortify";
 import {environment} from "../../environments/environment";
+import {NotificationService} from "../commons/notification.service";
 
 @Component({
   selector: 'app-home',
@@ -17,10 +18,14 @@ export class HomeComponent implements OnInit {
       Validators.required,
       Validators.minLength(5),
       this.mustBeUrl()
+    ]),
+    id: new FormControl('', [
+      Validators.minLength(0),
+      Validators.maxLength(40)
     ])
   })
 
-  constructor(private service: ShortifyService) {
+  constructor(private service: ShortifyService, private notify: NotificationService) {
   }
 
   mustBeUrl(): ValidatorFn {
@@ -43,15 +48,20 @@ export class HomeComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.form.value)
     const shortify: Shortify = { ...this.form.value }
 
     this.service
       .create(shortify)
-      .subscribe(shortify => {
-        console.log(shortify)
-        this.href = environment.redirectUrl + shortify.id
-        this.form.reset()
-      })
+      .subscribe(
+        {
+          next: () => {
+            this.href = environment.redirectUrl + shortify.id
+            this.form.reset()
+          },
+          error: (err) => {
+            this.notify.showNotification(err)
+          }
+        }
+      )
   }
 }
