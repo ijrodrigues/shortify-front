@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {Shortify} from "./Shortify";
+import {ShortifyRequest} from "./ShortifyRequest";
 import {Observable, throwError} from "rxjs";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {catchError} from "rxjs/operators";
+import {ShortifyResponse} from "./ShortifyResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class ShortifyService {
 
   constructor(private http: HttpClient) { }
 
-  create(todo : Shortify) : Observable<Shortify>{
-    return this.http.post<Shortify>(this.apiUrl, todo)
+  create(todo : ShortifyRequest) : Observable<ShortifyResponse>{
+    return this.http.post<ShortifyResponse>(this.apiUrl, todo)
       .pipe(catchError(this.handleError))
   }
 

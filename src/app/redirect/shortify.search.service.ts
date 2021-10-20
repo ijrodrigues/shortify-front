@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {Shortify} from "../home/Shortify";
+import {ShortifyRequest} from "../home/ShortifyRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ShortifySearchService {
 
   constructor(private http: HttpClient) { }
 
-  findById(id: string | null) : Observable<Shortify>{
-    return this.http.get<Shortify>(`${this.apiUrl}/${id}`)
+  findById(id: string | null) : Observable<ShortifyRequest>{
+    return this.http.get<ShortifyRequest>(`${this.apiUrl}/${id}`)
   }
 }

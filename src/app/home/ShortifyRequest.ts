@@ -1,4 +1,4 @@
-export class Shortify {
+export class ShortifyRequest {
   id?: string;
   url: string;
 

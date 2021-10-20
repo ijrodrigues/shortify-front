@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {ShortifyService} from "./shortify.service";
-import {Shortify} from "./Shortify";
+import {ShortifyRequest} from "./ShortifyRequest";
 import {environment} from "../../environments/environment";
 import {NotificationService} from "../commons/notification.service";
 
@@ -48,14 +48,15 @@ export class HomeComponent implements OnInit {
   }
 
   submit(){
-    const shortify: Shortify = { ...this.form.value }
+    const shortify: ShortifyRequest = { ...this.form.value }
 
     this.service
       .create(shortify)
       .subscribe(
         {
-          next: () => {
-            this.href = environment.redirectUrl + shortify.id
+          next: (response) => {
+            console.log(shortify)
+            this.href = environment.redirectUrl + response.id
             this.form.reset()
           },
           error: (err) => {
