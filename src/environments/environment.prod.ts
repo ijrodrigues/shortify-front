@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  redirectUrl: 'http://localhost:4200/',
-  shortifyManagerUrl: 'http://localhost:8080/shortify-manager/shortify',
-  shortifySearchUrl: 'http://localhost:8081/shortify-search'
+  redirectUrl: 'http://localhost:30000/',
+  shortifyManagerUrl: 'http://localhost:30001/shortify-manager/shortify',
+  shortifySearchUrl: 'http://localhost:30002/shortify-search'
 };
